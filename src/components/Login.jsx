@@ -15,35 +15,38 @@ const Login = () => {
 
     }
 
+    const inputClass = 'p-4 my-4 w-full bg-gray-700';
+
   return (
     <div className=''>
         <Header />
-        <div className='absolute h-screen'>
+        <div className='absolute -z-10 h-screen w-full'>
             <img src="https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/IN-en-20250721-TRIFECTA-perspective_cadc8408-df6e-4313-a05d-daa9dcac139f_large.jpg"
-         alt="MainBanner" />
+         alt="MainBanner"
+         className='object-cover h-full w-full' />
         </div>
-        <form className='absolute p-12 bg-black  w-3/12 mx-auto right-0 left-0 my-44 rounded-lg shadow-lg text-white opacity-90'>
+        <form className='absolute p-12 bg-black  w-3/12 mx-auto right-0 left-0 my-36 rounded-lg shadow-lg text-white opacity-90'>
             <h1 className='font-bold text-3xl py-4'>
                 {isSignInForm ? "Sign In" : "Sign Up"}
             </h1>
-            
+
             {!isSignInForm && ( <input 
             type="text" 
             placeholder='Full Name' 
-            className='p-4 my-4 w-full bg-gray-700 ' />)}
+            className={inputClass}/>)}
 
             <input 
             type="text" 
             placeholder='Email Address' 
-            className='p-4 my-4 w-full bg-gray-700 ' />
+            className={inputClass} />
 
 
             <input 
             type="password" 
             placeholder='Password' 
-            className='p-4 my-4 w-full bg-gray-700 ' />
+            className={inputClass} />
 
-            <button className='p-4 my-6 rounded-lg bg-red-700 w-full'>
+            <button type='submit' className='p-4 my-6 rounded-lg bg-red-700 w-full'>
                 {isSignInForm ? "Sign In" : "Sign Up"}
             </button>
 
