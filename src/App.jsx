@@ -1,13 +1,9 @@
-
-import './App.css'
+import Body from './components/Body'
 
 function App() {
 
   return (
-    <>
-      <p>Lets Build a React App with Vite and Tailwind CSS!
-      </p>    
-    </>
+   <Body/>
   )
 }
 

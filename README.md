@@ -1,11 +1,13 @@
 # NextFlix GPT
 - create vite app
 - configured tailwindcss
+- Header
+- Login Form
 
 
 # Features
 - Login/ SignUp Page
-    -Sign In/ Dign up Page
+    -Logn/ Sign up Page
     -redirect to Browse Page
 
 - Browse (after authentication)
