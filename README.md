@@ -2,7 +2,12 @@
 - create vite app
 - configured tailwindcss
 - Header
+- Routing
 - Login Form
+- Sign Up Form
+- Form Validation
+- useRef Hook
+
 
 
 # Features

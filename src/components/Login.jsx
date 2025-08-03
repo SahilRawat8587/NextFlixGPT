@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Header from './Header';
+import { checkValidData } from '../utils/Validate';
 
 const Login = () => {
 
@@ -7,11 +8,28 @@ const Login = () => {
     // Initially set to true for sign-in form
     // If you want to start with the sign-up form, set it to false
     const[isSignInForm, setIsSignInForm] = useState(true);
+    const[errorMessage, setErrorMessage] = useState(null);  
+
+    // Refs to access input values
+    // Using useRef to avoid unnecessary re-renders
+    const email = useRef(null);
+    const password = useRef(null);
 
     // Function to toggle the sign-in form
     
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignInForm);
+
+    }
+
+    const handleButtonClick = () => {
+       // Validate the form Data
+
+       const message = checkValidData( email.current.value, password.current.value);
+       setErrorMessage(message);
+
+         // If the message is null, it means validation passed
+         //sign in or sign up logic can be added here
 
     }
 
@@ -25,7 +43,9 @@ const Login = () => {
          alt="MainBanner"
          className='object-cover h-full w-full' />
         </div>
-        <form className='absolute p-12 bg-black  w-3/12 mx-auto right-0 left-0 my-36 rounded-lg shadow-lg text-white opacity-90'>
+        <form
+        onSubmit={(e) => e.preventDefault()}
+         className='absolute p-12 bg-black  w-3/12 mx-auto right-0 left-0 my-36 rounded-lg shadow-lg text-white opacity-90'>
             <h1 className='font-bold text-3xl py-4'>
                 {isSignInForm ? "Sign In" : "Sign Up"}
             </h1>
@@ -36,17 +56,21 @@ const Login = () => {
             className={inputClass}/>)}
 
             <input 
+            ref={email}
             type="text" 
             placeholder='Email Address' 
             className={inputClass} />
 
 
             <input 
+            ref={password}
             type="password" 
             placeholder='Password' 
             className={inputClass} />
 
-            <button type='submit' className='p-4 my-6 rounded-lg bg-red-700 w-full'>
+            <p className='py-2 text-xs text-red-700'>{errorMessage}</p>
+
+            <button type='submit' className='p-4 my-6 rounded-lg bg-red-700 w-full' onClick={handleButtonClick}>
                 {isSignInForm ? "Sign In" : "Sign Up"}
             </button>
 
