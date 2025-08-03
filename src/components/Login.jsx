@@ -45,10 +45,10 @@ const Login = () => {
         </div>
 
         {/* Login Form */}
-        <div className='flex justify-center items-center min-h-screen px-4'>
+        <div className='flex justify-center items-center min-h-screen px-4 '>
         <form
         onSubmit={(e) => e.preventDefault()}
-        className='bg-black opacity-90 p-8 sm:p-12 rounded-lg text-white w-full max-w-md shadow-xl'
+        className='bg-black/90 p-8 sm:p-12 rounded-lg text-white w-full max-w-md shadow-xl'
         >
             <h1 className='font-bold text-3xl py-4'>
                 {isSignInForm ? "Sign In" : "Sign Up"}
