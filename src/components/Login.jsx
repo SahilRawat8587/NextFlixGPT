@@ -1,12 +1,10 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import Header from './Header';
 import { checkValidData } from '../utils/Validate';
 
 const Login = () => {
 
     // State to toggle between sign-in and sign-up forms
-    // Initially set to true for sign-in form
-    // If you want to start with the sign-up form, set it to false
     const[isSignInForm, setIsSignInForm] = useState(true);
     const[errorMessage, setErrorMessage] = useState(null);  
 
@@ -16,10 +14,8 @@ const Login = () => {
     const password = useRef(null);
 
     // Function to toggle the sign-in form
-    
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignInForm);
-
     }
 
     const handleButtonClick = () => {
@@ -31,21 +27,29 @@ const Login = () => {
          // If the message is null, it means validation passed
          //sign in or sign up logic can be added here
 
-    }
+    };
 
-    const inputClass = 'p-4 my-4 w-full bg-gray-700';
+    const inputClass = 'p-4 my-4 w-full bg-gray-700 rounded-md';
 
   return (
-    <div className=''>
+    <div className='relative min-h-screen'>
+
         <Header />
-        <div className='absolute -z-10 h-screen w-full'>
-            <img src="https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/IN-en-20250721-TRIFECTA-perspective_cadc8408-df6e-4313-a05d-daa9dcac139f_large.jpg"
-         alt="MainBanner"
-         className='object-cover h-full w-full' />
+
+        {/*Background image for the login page */}
+        <div className='absolute inset-0 -z-10 '>
+            <img 
+            src="https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/IN-en-20250721-TRIFECTA-perspective_cadc8408-df6e-4313-a05d-daa9dcac139f_large.jpg"
+            alt="MainBanner"
+            className='object-cover h-full w-full' />
         </div>
+
+        {/* Login Form */}
+        <div className='flex justify-center items-center min-h-screen px-4'>
         <form
         onSubmit={(e) => e.preventDefault()}
-         className='absolute p-12 bg-black  w-3/12 mx-auto right-0 left-0 my-36 rounded-lg shadow-lg text-white opacity-90'>
+        className='bg-black opacity-90 p-8 sm:p-12 rounded-lg text-white w-full max-w-md shadow-xl'
+        >
             <h1 className='font-bold text-3xl py-4'>
                 {isSignInForm ? "Sign In" : "Sign Up"}
             </h1>
@@ -68,19 +72,24 @@ const Login = () => {
             placeholder='Password' 
             className={inputClass} />
 
-            <p className='py-2 text-xs text-red-700'>{errorMessage}</p>
+            {errorMessage &&<p className='py-2 text-xs text-red-700'>{errorMessage}</p>}
 
-            <button type='submit' className='p-4 my-6 rounded-lg bg-red-700 w-full' onClick={handleButtonClick}>
+            <button 
+            type='submit' 
+            className='p-4 my-6 rounded-lg bg-red-700 hover:bg-red-800 cursor-pointer w-full' 
+            onClick={handleButtonClick}>
                 {isSignInForm ? "Sign In" : "Sign Up"}
             </button>
 
-            <p className='py-4 text-sm cursor-pointer' onClick={toggleSignInForm}>
+            <p className='py-4 text-sm text-gray-300 hover:underline cursor-pointer' onClick={toggleSignInForm}>
                 {isSignInForm 
                 ? "New to  Nextflix? Sign Up Now!" 
                 : "Already Registered? Sign In Now!"}
             </p>
 
         </form>
+        
+        </div>
         
     </div>
   )
