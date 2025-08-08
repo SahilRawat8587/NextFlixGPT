@@ -1,6 +1,9 @@
 import { useRef, useState } from 'react'
 import Header from './Header';
 import { checkValidData } from '../utils/Validate';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../utils/Firebase';
+
 
 const Login = () => {
 
@@ -25,7 +28,29 @@ const Login = () => {
        setErrorMessage(message);
 
          // If the message is null, it means validation passed
-         //sign in or sign up logic can be added here
+
+        if(message) return;
+
+         // Proceed with sign-in or sign-up logic
+         if(!isSignInForm) {
+
+            // Sign Up Logic
+            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredential) => {
+                 // Signed up 
+                    const user = userCredential.user;
+                    console.log("User signed up successfully:", user);
+                     // ...
+                })
+                .catch((error) => {
+                const errorCode = error.code;
+                 const errorMessage = error.message;
+                 setErrorMessage(errorCode+ ":"+ errorMessage);
+                 });
+         }  
+        else {
+            // Sign In Logic
+            }
 
     };
 
