@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import Header from './Header';
 import { checkValidData } from '../utils/Validate';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../utils/Firebase';
 
 
@@ -49,7 +49,22 @@ const Login = () => {
                  });
          }  
         else {
+
             // Sign In Logic
+             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredential) => {
+                // Signed in 
+                    const user = userCredential.user;
+                    console.log("User signed in successfully:", user);
+                     // You can redirect the user or perform other actions here
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setErrorMessage(errorCode + ":" + errorMessage);
+                    console.error("Error signing in:", errorCode, errorMessage);
+                });
             }
 
     };
